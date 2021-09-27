@@ -6,9 +6,9 @@
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <a id="title_header"><th>Movie Title</th></a>
+      <a id="title_header" onClick="<%= link_to 'Movie Title',movies_path(sort: 'title',ratings:@ratings),id:"title_header" %>"><th class="<%= ('hilite' if @sort == 'title') %>">Movie Title</th></a>
       <th>Rating</th>
-      <a id="release_date_header"><th>Release Date</th></a>
+      <a id="release_date_header" onClick="<%= link_to 'Release Date',movies_path(sort: 'release_date',ratings:@ratings),id:"release_date_header" %>"><th class="<%= ('hilite' if @sort == 'release_date') %>">Release Date</th></a>
       <th>More Info</th>
     </tr>
   </thead>

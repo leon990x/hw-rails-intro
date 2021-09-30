@@ -10,8 +10,8 @@ class MoviesController < ApplicationController
       #@movies = Movie.all
       @all_ratings = Movie.ratings
       @sort = params[:sort]
-      @t_param =  params[:ratings]
-      @movies = Movie.where(rating:@t_param.keys).order(@sort)
+      @ratings = params[:ratings] || Hash[@all_ratings.map {|rating| [rating, rating]}]
+      @movies = Movie.where(rating:@ratings.keys).order(@sort)
     end
   
     def new

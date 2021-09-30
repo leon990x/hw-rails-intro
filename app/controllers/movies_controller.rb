@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
           flash.keep
           redirect_to movie_path(sort: session[:sort], ratings: session[:ratings])
     end
+  end
   
     def new
       # default: render 'new' template

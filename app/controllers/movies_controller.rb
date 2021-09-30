@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
       @set_ratings = params[:ratings]
       if !@set_ratings
         @set_ratings = Hash.new
+      end
     end
   
     def new

@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
       #@movies = Movie.all
       @all_ratings = Movie.ratings
       @sort = params[:sort]
-      @ratings = params[:ratings] || Hash[@all_ratings.map {|rating| [rating, rating]}]
+      @ratings = Hash[@all_ratings.map {|rating| [rating, rating]}]
       @movies = Movie.where(rating:@ratings.keys).order(@sort)
     end
   

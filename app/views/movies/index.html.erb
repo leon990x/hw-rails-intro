@@ -3,17 +3,13 @@
 
 <form id="ratings_form" action="<%=movies_path%>" method="get">
   <p>Include: </p>
-  <%=@all_ratings[0]%>
-  <input type="checkbox" id="ratings_G" name="ratings_G" value="<%=rating%>">
+  <input type="checkbox" id="ratings_G" name="ratings_G" value="<%=@all_ratings[0]%>">
     <label for="ratings_G">G</label>
-  <%=@all_ratings[1]%>
-  <input type="checkbox" id="ratings_PG" name="ratings_PG" value="<%=rating%>">
+  <input type="checkbox" id="ratings_PG" name="ratings_PG" value="<%=@all_ratings[1]%>">
     <label for="ratings_PG">PG</label>
-  <%=@all_ratings[2]%>
-  <input type="checkbox" id="ratings_PG-13" name="ratings_PG-13" value="<%=rating%>">
+  <input type="checkbox" id="ratings_PG-13" name="ratings_PG-13" value="<%=@all_ratings[2]%>">
     <label for="ratings_PG-13">PG-13</label>
-  <%=@all_ratings[3]%>
-  <input type="checkbox" id="ratings_R" name="ratings_R" value="<%=rating%>">
+  <input type="checkbox" id="ratings_R" name="ratings_R" value="<%=@all_ratings[3]%>">
     <label for="ratings_R">R</label>
   <input type="submit" id="ratings_submit" class="btn btn-primary" value="Refresh">
 </form>

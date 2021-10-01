@@ -16,15 +16,14 @@ class MoviesController < ApplicationController
       elsif params[:sort]
         @movies = Movie.order(params[:sort])#else if sorting by title or date
         if params[:sort] == 'title'
-          @css_title = 'hilite'
+          puts "nil"
         elsif params[:sort] == 'release_date'
-          @css_release_date = 'hilite'
+          puts "nil"
         end
       else
         @movies = Movie.all#else get all
         @selected_ratings = Movie.uniq.pluck(:rating)
       end
-
     end
   
     def new

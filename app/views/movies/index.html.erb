@@ -3,8 +3,6 @@
 
 <form id="ratings_form" action="<%=movies_path%>" method="get">
   <p>Include: </p>
-  <%=@all_ratings.each do |rating|%>
-  <%=rating%>
   <input type="checkbox" id="ratings_G" name="ratings_G">
     <label for="ratings_G">G</label>
   <input type="checkbox" id="ratings_PG" name="ratings_PG">

@@ -1,14 +1,14 @@
 <!--  This file is app/views/movies/index.html.erb -->
 <h2>All Movies</h2>
 
-<form id="ratings_form" action="<%=movie_path%>" method="<%=:get%>">
-  <p>Include: </p>
-  <div><%= check_box_tag('G', value = "ratings[#{rating}]", checked = if @filtered_ratings.find_index(rating)) %></div>
-  <div><%= check_box_tag('PG', value = "ratings[#{rating}]", checked = if @filtered_ratings.find_index(rating)) %></div>
-  <div><%= check_box_tag('PG-13', value = "ratings[#{rating}]", checked = if @filtered_ratings.find_index(rating)) %></div>
-  <div><%= check_box_tag('R', value = "ratings[#{rating}]", checked = if @filtered_ratings.find_index(rating)) %></div>
-  <input type="submit" id="ratings_submit" class="btn btn-primary" value="Refresh">
-</form>
+<%= form_tag movies_path, :method => :get %>
+  Include: 
+  <% @all_ratings.each do |rating| %>
+    <%= rating %>
+    <%= check_box_tag "ratings[#{rating}]", 1, ("checked" if @filtered_ratings.find_index(rating)) %>
+  <% end %>
+  <%= submit_tag 'Refresh', :id => "ratings_submit" %>
+<% end %>
 
 
 <table class="table table-striped col-md-12" id="movies">

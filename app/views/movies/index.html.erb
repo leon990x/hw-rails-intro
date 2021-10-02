@@ -14,12 +14,12 @@
 <!--  <input type="submit" id="ratings_submit" class="btn btn-primary" value="Refresh">-->
 <!--</form>-->
 
-<%= form_tag('movie_path', method: :get) do %>
-  <% @all_ratings.each do |rating| %>
-    <%= form.check_box :tags, {multiple: true}, rating, nil %>
-    <%= form.submit %>
-  
-<% end %>
+<%= form_tag movies_path, :method => :get do
+  Include:
+  - @all_ratings.each do |rating|
+    = rating
+    = check_box_tag "ratings[#{rating}]"
+  = submit_tag 'Refresh', :class => 'btn btn-primary'%>
 
 
 <table class="table table-striped col-md-12" id="movies">

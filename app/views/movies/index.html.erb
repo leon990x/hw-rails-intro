@@ -3,13 +3,13 @@
 
 <form id="ratings_form" action="/movies" method="get">
   <p>Include: </p>
-  <input type="checkbox" id="ratings_G" name="ratings_G" value="<%= 1 if ratings[rating] %>">
+  <input type="checkbox" id="ratings_G" name="ratings_G" value="">
     <label for="ratings_G">G</label>
-  <input type="checkbox" id="ratings_PG" name="ratings_PG" value="<%= 1 if ratings[rating] %>">
+  <input type="checkbox" id="ratings_PG" name="ratings_PG" value="">
     <label for="ratings_PG">PG</label>
-  <input type="checkbox" id="ratings_PG-13" name="ratings_PG-13" value="<%= 1 if ratings[rating] %>">
+  <input type="checkbox" id="ratings_PG-13" name="ratings_PG-13" value="">
     <label for="ratings_PG-13">PG-13</label>
-  <input type="checkbox" id="ratings_R" name="ratings_R" value="<%= 1 if ratings[rating] %>">
+  <input type="checkbox" id="ratings_R" name="ratings_R" value="">
     <label for="ratings_R">R</label>
   <input type="button" id="ratings_submit" class="btn btn-primary">Refresh</button>
 

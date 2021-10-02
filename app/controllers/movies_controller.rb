@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
   
     def index
       #@movies = Movie.all
-      @all_ratings = Movie.uniq.pluck(:rating)#ratings arr
+      @all_ratings = ['G','PG','PG-13','R']#Movie.uniq.pluck(:rating)#ratings arr
       @selected_ratings = []
       if params[:ratings]#if filter by rating
         params[:ratings].each {|key, value| @selected_ratings << key}#string wits selected ratings

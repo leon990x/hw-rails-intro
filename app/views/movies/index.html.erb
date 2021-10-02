@@ -4,8 +4,8 @@
 <form>
 <%= form_tag movies_path %>
   Include:
-  <% @all_ratings.each do |rating| %>
-    <%= rating %>
+  <%@all_ratings.each do |rating| %>
+    <%rating%>
     <%= check_box_tag "ratings[#{rating}]", 1, @ratings.include?(rating), :id => "ratings_#{rating}" %>
   <%end%>
 </form>  

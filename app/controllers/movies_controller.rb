@@ -12,17 +12,12 @@ class MoviesController < ApplicationController
       @selected_ratings = []
       if params[:ratings]#if filter by rating
         params[:ratings].each {|key, value| @selected_ratings << key}#string wits selected ratings
-        @movies = Movie.where(["rating IN (?)", @selected_ratings])#select with ratings
+        @movies = Movie.where([rating: @selected_ratings])#select with ratings
       elsif params[:sort]
         @movies = Movie.order(params[:sort])#else if sorting by title or date
-        if params[:sort] == 'title'
-          puts "nil"
-        elsif params[:sort] == 'release_date'
-          puts "nil"
-        end
       else
         @movies = Movie.all#else get all
-        @selected_ratings = Movie.uniq.pluck(:rating)
+        @selected_ratings = ['G','PG','PG-13','R']
       end
     end
   

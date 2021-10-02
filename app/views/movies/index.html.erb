@@ -1,18 +1,13 @@
 <!--  This file is app/views/movies/index.html.erb -->
 <h2>All Movies</h2>
 
-<form id="ratings_form" action="/movies" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;">
+<%= form_tag movies_path %>
   Include:
-    PG-13
-    <input type="checkbox" name="ratings[PG-13]" id="ratings_PG-13" value="1"/ checked='true'>
-    R
-    <input type="checkbox" name="ratings[R]" id="ratings_R" value="1" checked='false'/>
-    G
-    <input type="checkbox" name="ratings[G]" id="ratings_G" value="1" checked/>
-    PG
-    <input type="checkbox" name="ratings[PG]" id="ratings_PG" value="1" checked/>
-  <input type="submit" name="commit" value="Refresh" />
-</form>
+  <% @all_ratings.each do |rating| %>
+    <%= rating %>
+    <%= check_box_tag "ratings[#{rating}]", 1, @ratings.include?(rating), :id => "ratings_#{rating}" %>
+  <%end%>
+  
 
 <table class="table table-striped col-md-12" id="movies">
   <thead>

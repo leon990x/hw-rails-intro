@@ -4,10 +4,10 @@
 <%= form_tag movies_path, :method => :get, :id => 'ratings_form' do %>
   Include:
   <% @all_ratings.each do |rating| %>
-    <%= rating %>
-    <%= check_box_tag "ratings[#{rating}]", 1, @ratings.include?(rating), :id => "ratings_#{rating}" %>
+      <%= rating %>
+      <%= check_box_tag "ratings[#{rating}]", 1, @ratings.include?(rating), :id => "ratings_#{rating}" %>
     <% end %>
-    <%= submit_tag 'Refresh', :class => 'btn btn-primary' %>
+    <%= submit_tag 'Refresh' %>
 <% end %>
 
 <table class="table table-striped col-md-12" id="movies">

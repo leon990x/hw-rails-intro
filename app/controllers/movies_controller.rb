@@ -10,14 +10,14 @@ class MoviesController < ApplicationController
       @all_ratings = Movie.ratings 
       @ratings = @all_ratings 
       @ratings =  params[:ratings].keys if params[:ratings] 
-      #@movies = Movie.where(rating: @ratings)
+      @movies = Movie.where(rating: @ratings)
       @sort=params[:sort]
       @movies = Movie.all.order(@sort)
-      # if @sort
-      #   @movies = @movies.where(rating: @ratings).order(@sort)
-      # else
-      #   @movies = Movie.where(rating: @ratings)
-      # end
+      if @sort
+        @movies = @movies.where(rating: @ratings).order(@sort)
+      else
+        @movies = Movie.where(rating: @ratings)
+      end
       
       # session[:ratings] = params[:ratings] if params[:ratings] || params[:commit] == 'Refresh'
       # session[:sort] = params[:sort] if params[:sort]

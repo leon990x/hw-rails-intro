@@ -7,38 +7,38 @@ class MoviesController < ApplicationController
     end
   
     def index
-            @movies = Movie.all
-            @all_ratings = Movie.all_ratings
-            
-            if params[:sort]
-              @sort = params[:sort]
-            else
-              @sort = session[:sort]
-            end
-            
-            if @sort
-              @movies = @movies.order(@sort)
-            end
-            
-            if params[:ratings]
-              @filter_rating = params[:ratings].keys
-            elsif session[:ratings]
-              @filter_rating = session[:ratings]
-            else
-              @filter_rating = @all_ratings
-            end
-            
-            if @sort!=session[:sort]
-              session[:sort] = @sort
-            end
-            
-            if @filter_rating!=session[:ratings]
-              session[:ratings] = @filter_rating
-            end
-            
-            @movies = @movies.where('rating in (?)', @filter_rating)
-            
-          end
+      @movies = Movie.all
+      @all_ratings = Movie.all_ratings
+      
+      if params[:sort]
+        @sort = params[:sort]
+      else
+        @sort = session[:sort]
+      end
+      
+      if @sort
+        @movies = @movies.order(@sort)
+      end
+      
+      if params[:ratings]
+        @ratings_selected = params[:ratings].keys
+      elsif session[:ratings]
+        @ratings_selected = session[:ratings]
+      else
+        @ratings_selected = @all_ratings
+      end
+      
+      if @sort!=session[:sort]
+        session[:sort] = @sort
+      end
+      
+      if @ratings_selected!=session[:ratings]
+        session[:ratings] = @ratings_selected
+      end
+      
+      @movies = @movies.where('rating in (?)', @ratings_selected)
+      
+    end
   
     def new
       # default: render 'new' template

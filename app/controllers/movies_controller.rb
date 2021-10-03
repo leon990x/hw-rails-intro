@@ -8,8 +8,8 @@ class MoviesController < ApplicationController
   
     def index
         @movies = Movie.all
-        #@all_ratings = Movie.all_ratings
-        @all_ratings = ['G', 'PG', 'PG-13', 'R']
+        @all_ratings = Movie.all_ratings
+        #@all_ratings = ['G', 'PG', 'PG-13', 'R']
         @cache_ratings = session[:ratings]
         @cache_sort = session[:sort]
         @sort_params = params[:sort]

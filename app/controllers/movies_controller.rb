@@ -24,9 +24,6 @@ class MoviesController < ApplicationController
         @movies = @movies.order(session[:sort])#
       end
         
-      if @ratings_selected!=session[:ratings]
-        session[:ratings] = @ratings_selected
-      end
       
       if params[:ratings]
         @ratings_selected = params[:ratings].keys
@@ -34,6 +31,10 @@ class MoviesController < ApplicationController
         @ratings_selected = session[:ratings]
       else
         @ratings_selected = @all_ratings
+      end
+      
+      if @ratings_selected!=session[:ratings]
+        session[:ratings] = @ratings_selected
       end
         
       @movies = @movies.where('rating in (?)', @ratings_selected)

@@ -36,6 +36,7 @@ class MoviesController < ApplicationController
       end
         
       @movies = @movies.where('rating in (?)', @ratings_selected)
+      
     end
   
     def new

@@ -30,8 +30,8 @@ class MoviesController < ApplicationController
         if @ratings_selected!=session[:ratings]
           session[:ratings] = @ratings_selected
         end
-      elsif session[:ratings]
-        @ratings_selected = session[:ratings]
+      #elsif session[:ratings]
+        #@ratings_selected = session[:ratings]
       else
         @ratings_selected = @all_ratings
       end

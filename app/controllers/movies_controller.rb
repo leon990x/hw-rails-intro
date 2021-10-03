@@ -17,19 +17,20 @@ class MoviesController < ApplicationController
         #begin
         if @sort != session[:sort]
           session[:sort] = @sort
-        else
-          @sort = session[:sort]
         end
+      else
+          @sort = session[:sort]
         #end
       end
         
       
       if params[:ratings]
         @ratings_selected = params[:ratings].keys
+        if @ratings_selected!=session[:ratings]
+          session[:ratings] = @ratings_selected
+        end
       elsif session[:ratings]
         @ratings_selected = session[:ratings]
-      elsif @ratings_selected!=session[:ratings]
-        session[:ratings] = @ratings_selected
       else
         @ratings_selected = @all_ratings
       end

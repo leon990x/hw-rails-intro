@@ -27,7 +27,6 @@ class MoviesController < ApplicationController
       
       if params[:ratings]
         @ratings_selected = params[:ratings].keys
-      end
       elsif session[:ratings]
         if @ratings_selected!=session[:ratings]
           session[:ratings] = @ratings_selected

@@ -11,12 +11,11 @@ class MoviesController < ApplicationController
       @all_ratings = Movie.ratings_all
       @movies = Movie.all
       
-      if params[:sort]
-        if @sort != session[:sort]
-          session[:sort] = @sort
-        end
+      if params[:sort] && @sort == session[:sort]
         @sort = params[:sort]
         @movies = @movies.order(@sort)
+      elsif @sort != session[:sort]
+          session[:sort] = @sort
       else
           @sort = session[:sort]
       end

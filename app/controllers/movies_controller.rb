@@ -17,9 +17,9 @@ class MoviesController < ApplicationController
        # @sort = session[:sort]
       end
       
-      if @sort
-        @movies = @movies.order(@sort)
-      end
+      # if @sort
+      #   @movies = @movies.order(@sort)
+      # end
       
       if params[:ratings]
         @ratings_selected = params[:ratings].keys

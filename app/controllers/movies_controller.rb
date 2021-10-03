@@ -35,7 +35,6 @@ class MoviesController < ApplicationController
       else
         @ratings_selected = @all_ratings
       end
-      
         
       @movies = @movies.where('rating in (?)', @ratings_selected)
     end

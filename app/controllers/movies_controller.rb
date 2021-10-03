@@ -10,29 +10,31 @@ class MoviesController < ApplicationController
         @movies = Movie.all
         #@all_ratings = Movie.all_ratings
         @all_ratings = ['G', 'PG', 'PG-13', 'R']
+        @cache_ratings = session[:ratings]
+        @cache_sort = session[:sort]
+        @sort_params = params[:sort]
+        @rating_params = params[:rating]
         
-        @@cache_ratings = @cache_ratings
-        
-        if params[:sort]
-          @sort = params[:sort]
+        if @sort_params
+          @sort = @sort_params
         else
-          @sort = session[:sort]
+          @sort = @cache_sort
         end
         
         if @sort
           @movies = @movies.order(@sort)
         end
         
-        if params[:ratings]
-          @ratings_selected = params[:ratings].keys
-        elsif @@cache_ratings
+        if @sort != @cache_sort
+          @cache_sort = @sort
+        end
+        
+        if @rating_params
+          @ratings_selected = @rating_params.keys
+        elsif @cache_ratings
           @ratings_selected = @cache_ratings
         else
           @ratings_selected = @all_ratings
-        end
-        
-        if @sort!=session[:sort]
-          session[:sort] = @sort
         end
         
         if @ratings_selected!=@cache_ratings

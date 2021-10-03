@@ -12,6 +12,7 @@ class MoviesController < ApplicationController
       
       if params[:sort]
         @sort = params[:sort]
+        @movies = @movies.order(@sort)
       #else
        # @sort = session[:sort]
       end

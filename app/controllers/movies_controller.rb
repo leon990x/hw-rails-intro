@@ -25,16 +25,16 @@ class MoviesController < ApplicationController
           @movies = @movies.order(@sort)
         end
         
-        if @sort != @cache_sort
-          @cache_sort = @sort
-        end
-        
         if @rating_params
           @ratings_selected = @rating_params.keys
         elsif @cache_ratings
           @ratings_selected = @cache_ratings
         else
           @ratings_selected = @all_ratings
+        end
+        
+        if @sort != @cache_sort
+          @cache_sort = @sort
         end
         
         if @ratings_selected!=@cache_ratings

@@ -8,11 +8,12 @@ class MoviesController < ApplicationController
   
     def index
       @all_ratings = Movie.ratings 
-      @ratings = params[:ratings] || session[:ratings] || {} 
-      @ratings =  Hash[@all_ratings.map {|rating| [rating, rating]}] if @selected_ratings == {}
+      #@ratings = params[:ratings] || session[:ratings] || {} 
+      @ratings =  Hash[@all_ratings.map {|rating| [rating, rating]}] #if @selected_ratings == {}
       @movies = Movie.where(rating: @ratings)
       @sort = params[:sort]
       @movies = Movie.all.order(@sort)
+      
       if @sort
         @movies = @movies.where(rating: @ratings).order(@sort)
       else

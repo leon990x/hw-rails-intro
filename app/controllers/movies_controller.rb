@@ -7,43 +7,38 @@ class MoviesController < ApplicationController
     end
   
     def index
-        @movies = Movie.all
-        @all_ratings = Movie.all_ratings
-        #@all_ratings = ['G', 'PG', 'PG-13', 'R']
-        @cache_ratings = session[:ratings]
-        @cache_sort = session[:sort]
-        @sort_params = params[:sort]
-        @rating_params = params[:ratings]
-        
-        if @sort_params
-          @sort = @sort_params
-        else
-          @sort = @cache_sort
-        end
-        
-        if @sort
-          @movies = @movies.order(@sort)
-        end
-        
-        if @rating_params
-          @ratings_selected = @rating_params.keys
-        elsif @cache_ratings
-          @ratings_selected = @cache_ratings
-        else
-          @ratings_selected = @all_ratings
-        end
-        
-        if @sort != @cache_sort
-          @cache_sort = @sort
-        end
-        
-        if @ratings_selected!=@cache_ratings
-          @cache_ratings = @ratings_selected
-        end
-        
-        @movies = @movies.where('rating in (?)', @ratings_selected)
-        
-      end
+            @movies = Movie.all
+            @all_ratings = Movie.all_ratings
+            
+            if params[:sort]
+              @sort = params[:sort]
+            else
+              @sort = session[:sort]
+            end
+            
+            if @sort
+              @movies = @movies.order(@sort)
+            end
+            
+            if params[:ratings]
+              @filter_rating = params[:ratings].keys
+            elsif session[:ratings]
+              @filter_rating = session[:ratings]
+            else
+              @filter_rating = @all_ratings
+            end
+            
+            if @sort!=session[:sort]
+              session[:sort] = @sort
+            end
+            
+            if @filter_rating!=session[:ratings]
+              session[:ratings] = @filter_rating
+            end
+            
+            @movies = @movies.where('rating in (?)', @filter_rating)
+            
+          end
   
     def new
       # default: render 'new' template

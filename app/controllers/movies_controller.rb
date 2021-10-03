@@ -7,32 +7,38 @@ class MoviesController < ApplicationController
     end
   
     def index
-      @all_ratings = Movie.ratings 
-      #@ratings = params[:ratings] || session[:ratings] || {} 
-      #@ratings =  Hash[@all_ratings.map {|rating| [rating, rating]}] #if @selected_ratings == {}
-      @movies = Movie.where(rating: @ratings)
-      @sort = params[:sort]
-      @movies = Movie.all.order(@sort)
-      
-      # if @sort
-      #   @movies = @movies.where(rating: @ratings).order(@sort)
-      # else
-      #   @movies = Movie.where(rating: @ratings)
-      # end
-      
-      # session[:ratings] = params[:ratings] if params[:ratings] || params[:commit] == 'Refresh'
-      # session[:sort] = params[:sort] if params[:sort]
-      # if (!params[:sort] && !params[:ratings]) && (session[:sort] && session[:ratings])
-      #   flash.keep
-      #   return redirect_to movies_path(sort: session[:sort], ratings: session[:ratings])
-      # elsif !params[:sort] && session[:sort]
-      #   flash.keep
-      #   return redirect_to movies_path(sort: session[:sort], ratings: params[:ratings])
-      # elsif !params[:ratings] && session[:ratings]
-      #   flash.keep
-      #   return redirect_to movies_path(sort: params[:sort], ratings: session[:ratings])
-      # end
-    end
+        @movies = Movie.all
+        @all_ratings = Movie.all_ratings
+        
+        if params[:sort]
+          @sort = params[:sort]
+        else
+          @sort = session[:sort]
+        end
+        
+        if @sort
+          @movies = @movies.order(@sort)
+        end
+        
+        if params[:ratings]
+          @filter_rating = params[:ratings].keys
+        elsif session[:ratings]
+          @filter_rating = session[:ratings]
+        else
+          @filter_rating = @all_ratings
+        end
+        
+        if @sort!=session[:sort]
+          session[:sort] = @sort
+        end
+        
+        if @filter_rating!=session[:ratings]
+          session[:ratings] = @filter_rating
+        end
+        
+        @movies = @movies.where('rating in (?)', @filter_rating)
+        
+      end
   
     def new
       # default: render 'new' template

@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
         @cache_ratings = session[:ratings]
         @cache_sort = session[:sort]
         @sort_params = params[:sort]
-        @rating_params = params[:rating]
+        @rating_params = params[:ratings]
         
         if @sort_params
           @sort = @sort_params

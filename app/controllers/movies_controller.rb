@@ -7,38 +7,20 @@ class MoviesController < ApplicationController
     end
   
     def index
+      @all_ratings = Movie.ratings_all
       @movies = Movie.all
-      @all_ratings = Movie.all_ratings
       
       if params[:sort]
         @sort = params[:sort]
         @movies = @movies.order(@sort)
-      #else
-       # @sort = session[:sort]
       end
-      
-      # if @sort
-      #   @movies = @movies.order(@sort)
-      # end
       
       if params[:ratings]
         @ratings_selected = params[:ratings].keys
-     #elsif session[:ratings]
-        #@ratings_selected = session[:ratings]
       else
         @ratings_selected = @all_ratings
       end
-      
-      # if @sort!=session[:sort]
-      #   session[:sort] = @sort
-      # end
-      
-      # if @ratings_selected!=session[:ratings]
-      #   session[:ratings] = @ratings_selected
-      # end
-      
       @movies = @movies.where('rating in (?)', @ratings_selected)
-      
     end
   
     def new
